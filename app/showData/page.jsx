@@ -2,10 +2,10 @@ import axios from "axios";
 
 export default async function Show(params) {
     const response = await axios.get('https://trip-y1a7.onrender.com/getTrip',{
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
     const data = response.data;
     let amount = 0;
     let amount_yash = 0;
@@ -55,7 +55,7 @@ export default async function Show(params) {
                                 key={index}
                                 className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
                                 >
-                                    <td className="px-4 py-2 border-b">{ele.id}</td>
+                                    <td className="px-4 py-2 border-b">{index+1}</td>
                                     <td className="px-4 py-2 border-b">{ele.name}</td>
                                     <td className="px-4 py-2 border-b">{ele.price}</td>
                                     <td className="px-4 py-2 border-b">{ele.paid_by}</td>
