@@ -1,10 +1,8 @@
 import axios from "axios";
 import next from "next";
-import { revalidateTag } from "next/cache";
 
 export default async function Show(params) {
     const response = await fetch('https://trip-y1a7.onrender.com/getTrip', {next: { tags: ['collection'] } })
-    revalidateTag('collection');
     const data = response.data;
     let amount = 0;
     let amount_yash = 0;

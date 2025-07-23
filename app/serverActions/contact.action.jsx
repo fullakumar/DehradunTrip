@@ -12,6 +12,7 @@ async function sendData(data) {
     const response = await axios.post('https://trip-y1a7.onrender.com/createTrip', 
         data
     );
+    revalidateTag('collection');
     console.log('Success:', response.data);
   } catch (error) {
     console.error('Error:', error);
