@@ -1,7 +1,11 @@
 import axios from "axios";
 
 export default async function Show(params) {
-    const response = await axios.get('https://trip-y1a7.onrender.com/getTrip');
+    const response = await axios.get('https://trip-y1a7.onrender.com/getTrip',{
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
     const data = response.data;
     let amount = 0;
     let amount_yash = 0;
