@@ -9,7 +9,11 @@ export const contactAction = async (formData) =>{
 async function sendData(data) {
   try {
     const response = await axios.post('https://trip-y1a7.onrender.com/createTrip', 
-        data
+        data,{
+  headers: {
+    "Content-Type": "application/json",
+  },
+}
     );
     console.log('Success:', response.data);
   } catch (error) {
