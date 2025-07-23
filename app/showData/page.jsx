@@ -1,8 +1,9 @@
+export const revalidate = 1;
+
 export default async function Show(params) {
-    const response = await fetch('https://trip-y1a7.onrender.com/getTrip', { cache: 'no-store' });
-    // const response = await axios.post('https://trip-y1a7.onrender.com/getTrip', 
-    //     data
-    // );
+    const response = await axios.post('https://trip-y1a7.onrender.com/getTrip', 
+        data
+    );
     const data = response.data;
     let amount = 0;
     let amount_yash = 0;
