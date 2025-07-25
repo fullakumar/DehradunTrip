@@ -1,7 +1,5 @@
 import axios from "axios";
 
-export const revalidate = 1;
-
 export default async function Show(params) {
     const response = await axios.get('https://trip-y1a7.onrender.com/getTrip');
     const data = response.data;

@@ -1,6 +1,6 @@
 import {contactAction} from '../serverActions/contact.action'
 
-export default async function Create(params) {
+export default function Create(params) {
     return (
         <div className="w-screen h-[91.9vh] bg-amber-400 flex justify-center items-center">
             <div className="relative p-1 rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out">

@@ -1,10 +1,11 @@
-"use server"
-
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 
 export const contactAction = async (formData) =>{
+    "use server"
     const data = Object.fromEntries(formData.entries());
     sendData(data);
+    revalidatePath("/showData");
 }
 
 async function sendData(data) {
