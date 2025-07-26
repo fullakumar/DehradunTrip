@@ -2,7 +2,7 @@
 
 import {contactAction} from '../serverActions/contact.action'
 import { toast } from 'react-toastify';
-import Loader from '../components/Loader';
+import Loader1 from '../components/Loader1';
 import { useState } from 'react';
 
 export default function Create() {
@@ -16,19 +16,20 @@ export default function Create() {
         
         const result = await contactAction(formData);
 
-        if (result.success) {
-            toast.success(result.message);
-            event.target.reset();
-        } else {
-            toast.error(result.message);
-        }
         setTimeout(()=>{
             setLoading(false);
+            if (result.success) {
+                toast.success(result.message);
+                event.target.reset();
+            } 
+            else {
+                toast.error(result.message);
+            }
         },3000);
     }
 
     return (
-        loading ? (<Loader />) : (
+        loading ? (<Loader1 />) : (
             <div className="w-screen h-[91.9vh] bg-amber-400 flex justify-center items-center">
                 <div className="relative p-1 rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out">
                     <div className="bg-white dark:bg-gray-900 rounded-3xl p-10 w-[90vw] max-w-xl shadow-inner relative z-10">

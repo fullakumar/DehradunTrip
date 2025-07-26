@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
-import Loader from '../components/Loader';
+import Loader2 from '../components/Loader2';
 import { toast } from 'react-toastify';
 
 export default function Show() {
@@ -45,8 +45,10 @@ export default function Show() {
         } 
         catch (error) {
             console.error('Error:', error);
-            setLoading(false);
-            toast.error("Network error while fetching data!");
+            setTimeout(()=>{
+                setLoading(false);
+                toast.error("Network error while fetching data!");
+            },3000);
         }
     }
 
@@ -69,7 +71,7 @@ export default function Show() {
     },[]);
 
     return (
-        loading ? (<Loader />) :
+        loading ? (<Loader2 />) :
         (
             <div className={`${data.length === 0 ? "h-[91.9vh]" : ""} flex flex-col justify-center items-center px-4`}>
         {
@@ -114,13 +116,35 @@ export default function Show() {
                     </table>
                 </div>
 
-                <div className="w-full sm:w-auto text-sm sm:text-base space-y-1 p-4">
-                    <div className="text-center"><strong>Total Amount:</strong> {amount}</div>
-                    <div className="text-center"><strong>Amount paid by Sumit:</strong> {amount_sumit}</div>
-                    <div className="text-center"><strong>Amount paid by Yash:</strong> {amount_yash}</div>
-                    <div className="text-center"><strong>Amount paid by Vidu:</strong> {amount_vidu}</div>
-                    <div className="text-center"><strong>Amount paid by Shivam:</strong> {amount_shivam}</div>
-                    <div className="text-center"><strong>Amount per Person:</strong> {amount / 4}</div>
+                <div className="w-full sm:w-auto text-sm sm:text-base p-4">
+                    <table className="w-full border-collapse border border-gray-300">
+                        <tbody>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Total Amount:</td>
+                            <td className="p-2 text-right">{amount}</td>
+                        </tr>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Amount paid by Sumit:</td>
+                            <td className="p-2 text-right">{amount_sumit}</td>
+                        </tr>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Amount paid by Yash:</td>
+                            <td className="p-2 text-right">{amount_yash}</td>
+                        </tr>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Amount paid by Vidu:</td>
+                            <td className="p-2 text-right">{amount_vidu}</td>
+                        </tr>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Amount paid by Shivam:</td>
+                            <td className="p-2 text-right">{amount_shivam}</td>
+                        </tr>
+                        <tr className="border border-gray-300">
+                            <td className="font-semibold p-2">Amount per Person:</td>
+                            <td className="p-2 text-right">{amount / 4}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 </>
             )
