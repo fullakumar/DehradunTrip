@@ -1,6 +1,7 @@
 "use client"
 
-import UpdateFormModal from '../components/updateFormModal';
+import UpdateFormModal from '../components/UpdateFormModal';
+import DeleteDataModal from '../components/DeleteDataModal';
 import axios from 'axios';
 import { TrashIcon,PencilIcon  } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
@@ -9,6 +10,8 @@ import { toast } from 'react-toastify';
 
 export default function Show() {
 
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [data,setData] = useState([]);
@@ -68,6 +71,11 @@ export default function Show() {
         }
         
     }
+
+    const handleDeleteClick = (item) => {
+        setItemToDelete(item);
+        setIsDeleteModalOpen(true);
+    };
 
     const handleEdit = (item) => {
         setSelectedItem(item);
@@ -134,7 +142,7 @@ export default function Show() {
                             <td className="px-2 py-1 sm:px-4 sm:py-2 border-b">{ele.date}</td>
                             <td className="px-2 py-1 sm:px-4 sm:py-2 border-b">{ele.time}</td>
                             <td className="px-2 py-1 sm:px-4 sm:py-2 border-b">
-                            <button className="text-red-500 hover:underline cursor-pointer"><TrashIcon onClick={() => deleteHandler(ele.id)} className="h-5 w-5 text-red-500 hover:text-red-700" /></button>
+                            <button className="text-red-500 hover:underline cursor-pointer"><TrashIcon onClick={() => handleDeleteClick(ele)} className="h-5 w-5 text-red-500 hover:text-red-700" /></button>
                             <button className="text-blue-500 hover:underline cursor-pointer"><PencilIcon  onClick={() => handleEdit(ele)} className="h-5 w-5 text-blue-500 hover:text-blue-700" /></button>
                             </td>
                         </tr>
@@ -178,6 +186,12 @@ export default function Show() {
                     onClose={() => setIsModalOpen(false)}
                     onSubmit={handleUpdate}
                     defaultData={selectedItem}
+                />
+                <DeleteDataModal
+                    isOpen={isDeleteModalOpen}
+                    onClose={() => setIsDeleteModalOpen(false)}
+                    onConfirm={deleteHandler}
+                    item={itemToDelete}
                 />
                 </>
             )

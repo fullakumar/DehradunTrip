@@ -88,14 +88,14 @@ export default function UpdateFormModal({ isOpen, onClose, onSubmit, defaultData
               <div className="flex justify-end gap-4 pt-4">
                 <button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition duration-200 shadow-md"
+                  className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition duration-200 shadow-md"
                 >
                   ✅ Update
                 </button>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-5 py-2 rounded-lg transition duration-200"
+                  className="cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-5 py-2 rounded-lg transition duration-200"
                 >
                   ❌ Cancel
                 </button>
