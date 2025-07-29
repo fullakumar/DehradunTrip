@@ -1,13 +1,16 @@
 "use client"
 
+import UpdateFormModal from '../components/UpdateFormModal';
 import axios from 'axios';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { TrashIcon,PencilIcon  } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
-import Loader2 from '../components/Loader2';
+import Loader1 from '../components/Loader1';
 import { toast } from 'react-toastify';
 
 export default function Show() {
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [data,setData] = useState([]);
     const [amount,setAmount] = useState(0);
     const [amount_yash,setAmount_yash] = useState(0);
@@ -66,12 +69,35 @@ export default function Show() {
         
     }
 
+    const handleEdit = (item) => {
+        setSelectedItem(item);
+        setIsModalOpen(true);
+    };
+
+    const handleUpdate = async (updatedData) => {
+    try {
+        const data = {
+            name : updatedData.name,
+            price : updatedData.price,
+            paid_by : updatedData.paid_by
+        }
+        const res = await axios.patch(`https://trip-y1a7.onrender.com/updateTrip/${updatedData.id}`, data);
+        console.log(res.data);
+        toast.success("Data Updated Successfully");
+        getData();
+    } catch (error) {
+        console.error("Update error:", error);
+        toast.error("Network error while updating data!");
+    }
+    };
+
+
     useEffect(()=>{
         getData()
     },[]);
 
     return (
-        loading ? (<Loader2 />) :
+        loading ? (<Loader1 />) :
         (
             <div className={`${data.length === 0 ? "h-[91.9vh]" : ""} flex flex-col justify-center items-center px-4`}>
         {
@@ -92,7 +118,7 @@ export default function Show() {
                         <th className="px-2 py-1 sm:px-4 sm:py-2 border-b">Paid By</th>
                         <th className="px-2 py-1 sm:px-4 sm:py-2 border-b">Date</th>
                         <th className="px-2 py-1 sm:px-4 sm:py-2 border-b">Time</th>
-                        <th className="px-2 py-1 sm:px-4 sm:py-2 border-b">Delete</th>
+                        <th className="px-2 py-1 sm:px-4 sm:py-2 border-b">Delete or Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,6 +135,7 @@ export default function Show() {
                             <td className="px-2 py-1 sm:px-4 sm:py-2 border-b">{ele.time}</td>
                             <td className="px-2 py-1 sm:px-4 sm:py-2 border-b">
                             <button className="text-red-500 hover:underline cursor-pointer"><TrashIcon onClick={() => deleteHandler(ele.id)} className="h-5 w-5 text-red-500 hover:text-red-700" /></button>
+                            <button className="text-blue-500 hover:underline cursor-pointer"><PencilIcon  onClick={() => handleEdit(ele)} className="h-5 w-5 text-blue-500 hover:text-blue-700" /></button>
                             </td>
                         </tr>
                         ))}
@@ -146,10 +173,17 @@ export default function Show() {
                         </tbody>
                     </table>
                 </div>
+                <UpdateFormModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onSubmit={handleUpdate}
+                    defaultData={selectedItem}
+                />
                 </>
             )
         }
         </div>
         )
+        
     )
 }
