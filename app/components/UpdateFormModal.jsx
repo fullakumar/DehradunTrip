@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function UpdateFormModal({ isOpen, onClose, onSubmit, defaultData = {} }) {
+
+  if (!isOpen) return null;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -17,8 +20,7 @@ export default function UpdateFormModal({ isOpen, onClose, onSubmit, defaultData
     onClose();
   };
 
-  if (typeof window === 'undefined') return null;
-
+  
   return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
