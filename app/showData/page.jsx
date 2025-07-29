@@ -1,6 +1,6 @@
 "use client"
 
-import UpdateFormModal from '../components/UpdateFormModal';
+import UpdateFormModal from '../components/updateFormModal';
 import axios from 'axios';
 import { TrashIcon,PencilIcon  } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
