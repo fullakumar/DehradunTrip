@@ -7,6 +7,8 @@ import { useState } from 'react';
 
 export default function Create() {
 
+    const personNames = ["Choose a Person" , "Sumit" , "Yash" , "Vidu" , "Shivam"];
+
     const [loading,setLoading] = useState(false);
 
     async function handleSubmit(event) {
@@ -50,11 +52,13 @@ export default function Create() {
                         <div className="flex gap-3 flex-col md:flex-row">
                         <label htmlFor="paid_by">Paid_By</label>
                         <select id="paid_by" name="paid_by" className="border-2 rounded-md px-2 py-1 w-full md:ml-3">
-                            <option value="Choose">Choose a Person</option>
-                            <option value="Sumit">Sumit</option>
-                            <option value="Yash">Yash</option>
-                            <option value="Vidu">Vidu</option>
-                            <option value="Shivam">Shivam</option>
+                            {
+                                personNames.map((person,id) => {
+                                    return(
+                                        <option key={id} value="Shivam">{person}</option>
+                                    )
+                                })
+                            }
                         </select>
                         </div>
 
