@@ -55,7 +55,7 @@ export default function Create() {
                             {
                                 personNames.map((person,id) => {
                                     return(
-                                        <option key={id} value="Shivam">{person}</option>
+                                        <option key={id} value={person}>{person}</option>
                                     )
                                 })
                             }
