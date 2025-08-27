@@ -37,6 +37,7 @@ export default function Create() {
                     <div className="bg-white dark:bg-gray-900 rounded-3xl p-10 w-[90vw] max-w-xl shadow-inner relative z-10">
 
                     <form onSubmit={handleSubmit} className="text-2xl flex flex-col gap-5">
+                        
                         <h1 className="text-center text-3xl mb-10 font-semibold text-gray-800 dark:text-white">Details</h1>
 
                         <div className="flex gap-3 flex-col md:flex-row">
@@ -67,6 +68,7 @@ export default function Create() {
                             Submit
                         </button>
                         </div>
+
                     </form>
 
                     </div>
