@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default function Create() {
 
-    const personNames = ["Choose a Person" , "Sumit" , "Yash" , "Vidu" , "Shivam"];
+    const personNames = ["Choose a Person" , "David" , "Yash" , "Rohit" , "Ashu"];
 
     const [loading,setLoading] = useState(false);
 

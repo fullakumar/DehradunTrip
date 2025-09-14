@@ -20,14 +20,14 @@ export default function Show() {
 
     const [amount,setAmount] = useState(0);
     const [amount_yash,setAmount_yash] = useState(0);
-    const [amount_sumit,setAmount_sumit] = useState(0);
-    const [amount_vidu,setAmount_vidu] = useState(0);
-    const [amount_shivam,setAmount_shivam] = useState(0);
+    const [amount_ashu,setAmount_ashu] = useState(0);
+    const [amount_david,setAmount_david] = useState(0);
+    const [amount_rohit,setAmount_rohit] = useState(0);
 
     const [amount_yash_set,setAmount_yash_set] = useState(0);
-    const [amount_sumit_set,setAmount_sumit_set] = useState(0);
-    const [amount_vidu_set,setAmount_vidu_set] = useState(0);
-    const [amount_shivam_set,setAmount_shivam_set] = useState(0);
+    const [amount_ashu_set,setAmount_ashu_set] = useState(0);
+    const [amount_david_set,setAmount_david_set] = useState(0);
+    const [amount_rohit_set,setAmount_rohit_set] = useState(0);
 
     const [loading,setLoading] = useState(true);
 
@@ -38,25 +38,25 @@ export default function Show() {
             const fetchedData = response.data;
             setData(fetchedData);
 
-            let total = 0, yash = 0, sumit = 0, vidu = 0, shivam = 0;
+            let total = 0, yash = 0, ashu = 0, david = 0, rohit = 0;
 
             fetchedData.forEach(element => {
                 total += parseInt(element.price);
                 if (element.paid_by === "Yash") yash += parseInt(element.price);
-                if (element.paid_by === "Sumit") sumit += parseInt(element.price);
-                if (element.paid_by === "Vidu") vidu += parseInt(element.price);
-                if (element.paid_by === "Shivam") shivam += parseInt(element.price);
+                if (element.paid_by === "Ashu") ashu += parseInt(element.price);
+                if (element.paid_by === "David") david += parseInt(element.price);
+                if (element.paid_by === "Rohit") rohit += parseInt(element.price);
             });
 
             setAmount(total);
             setAmount_yash(yash);
-            setAmount_sumit(sumit);
-            setAmount_vidu(vidu);
-            setAmount_shivam(shivam);
+            setAmount_ashu(ashu);
+            setAmount_david(david);
+            setAmount_rohit(rohit);
             setAmount_yash_set(yash-(total/4));
-            setAmount_sumit_set(sumit-(total/4));
-            setAmount_vidu_set(vidu-(total/4));
-            setAmount_shivam_set(shivam-(total/4));
+            setAmount_ashu_set(ashu-(total/4));
+            setAmount_david_set(david-(total/4));
+            setAmount_rohit_set(rohit-(total/4));
             setTimeout(()=>{
                 setLoading(false);
                 toast.success("Data Loaded Successfully");
@@ -183,20 +183,20 @@ export default function Show() {
                             <td className="p-3 text-center text-gray-700">{amount}</td>
                             </tr>
                             <tr className="border-t border-gray-200 bg-gray-50">
-                            <td className="p-3 font-medium text-gray-800">Paid by Sumit</td>
-                            <td className="p-3 text-center text-gray-700">{amount_sumit}</td>
+                            <td className="p-3 font-medium text-gray-800">Paid by Ashu</td>
+                            <td className="p-3 text-center text-gray-700">{amount_ashu}</td>
                             </tr>
                             <tr className="border-t border-gray-200 bg-white">
                             <td className="p-3 font-medium text-gray-800">Paid by Yash</td>
                             <td className="p-3 text-center text-gray-700">{amount_yash}</td>
                             </tr>
                             <tr className="border-t border-gray-200 bg-gray-50">
-                            <td className="p-3 font-medium text-gray-800">Paid by Vidu</td>
-                            <td className="p-3 text-center text-gray-700">{amount_vidu}</td>
+                            <td className="p-3 font-medium text-gray-800">Paid by David</td>
+                            <td className="p-3 text-center text-gray-700">{amount_david}</td>
                             </tr>
                             <tr className="border-t border-gray-200 bg-white">
-                            <td className="p-3 font-medium text-gray-800">Paid by Shivam</td>
-                            <td className="p-3 text-center text-gray-700">{amount_shivam}</td>
+                            <td className="p-3 font-medium text-gray-800">Paid by Rohit</td>
+                            <td className="p-3 text-center text-gray-700">{amount_rohit}</td>
                             </tr>
                             <tr className="border-t border-gray-300 bg-yellow-50">
                             <td className="p-3 font-semibold text-yellow-800">Amount Per Person</td>
@@ -224,10 +224,10 @@ export default function Show() {
                         </thead>
                         <tbody>
                             {[
-                            { name: 'Sumit', amount: amount_sumit_set },
+                            { name: 'Ashu', amount: amount_ashu_set },
                             { name: 'Yash', amount: amount_yash_set },
-                            { name: 'Vidu', amount: amount_vidu_set },
-                            { name: 'Shivam', amount: amount_shivam_set },
+                            { name: 'David', amount: amount_david_set },
+                            { name: 'Rohit', amount: amount_rohit_set },
                             ].map((person, index) => (
                             <tr
                                 key={person.name}
